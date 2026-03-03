@@ -14,6 +14,7 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
+      /*
       const button = <button>hello</button>;
       const paragraph = <p>Paragraph</p>;
       const name = "Syed Ihsan";
@@ -32,13 +33,37 @@
           <p>Current time: {currentTime}</p>
         </div>
       );
+      */
+      function Clock() {
+        const [ time, setTime ] = React.useState("");
+
+        React.useEffect(() => {
+          const interval = setInterval(() => {
+            const currentTime = dayjs().format("HH:mm:ss");
+            setTime(currentTime);
+          }, 1000);
+        });
+
+        
+        return (
+          <>
+            <p>Current time: {time}</p>
+          </>
+        );
+      };
     
+      function App() {
+        return (
+          <>
+            <Clock />
+          </>
+        );
+      };
+
       const container = document.querySelector('.js-container');
       const root = ReactDOM.createRoot(container);
+      root.render(<App />)
 
-      setInterval(() => {
-        root.render(div);
-      }, 1000);
     </script>
   </body>
 </html>
