@@ -76,3 +76,54 @@ onChange = runs a function when we change the text inside an <input>
 
 Lifting the State Up = share state between multiple components
 
+
+
+Hooks = insert React features into our component
+
+
+
+React.useState() is a hook
+
+
+
+React Hooks:
+
+
+
+* useState() = automatically updates the HTML when the data changes
+* useEffect() = run some code after the component is created or updated
+* useRef() = automatically save an HTML element from the component
+* and more...
+
+
+
+Every hook starts with the word "use"
+
+
+
+Put hooks at the top of the component
+
+
+
+Hooks should not be inside anything
+
+
+
+###### Dependency Array = control when useEffect runs
+
+
+
+\[] = only run once, after the component is created
+
+
+
+\[chatMessages] = run this function every time chatMessages changes
+
+
+
+Best Practice = Give useEffect a dependency array to avoid running too often
+
+
+
+ref = container with special React features
+
