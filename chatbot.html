@@ -7,6 +7,7 @@
     <style>
       body {
         font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
       }
 
       .send-button {
@@ -30,12 +31,15 @@
 
       .chat-input-container {
         display: flex;
-        margin-top: 20px;
+        margin: 20px 0 60px 0;
       }
 
       .app-container {
         max-width: 600px;
+        height: 100vh;
         margin: 0 auto 0 auto;
+        display: flex;
+        flex-direction: column;
       }
 
       .chat-message-user {
@@ -60,6 +64,12 @@
 
       .chat-message-profile {
         width: 48px;
+      }
+
+      .chat-messages-container {
+        flex-grow: 1;
+        overflow: scroll;
+        scrollbar-width: none;
       }
     </style>
   </head>
@@ -167,8 +177,17 @@
       };
 
       function ChatMessages({ chatMessages }) {
+        const chatMessagesRef = React.useRef(null);
+
+        React.useEffect(() => {
+          const containerElem = chatMessagesRef.current
+          if (containerElem) {
+            containerElem.scrollTop = containerElem.scrollHeight;
+          }
+        }, [chatMessages]);
+
         return (
-          <>
+          <div className="chat-messages-container" ref={chatMessagesRef}>
             {chatMessages.map((chatMessage) => {
               return (
                 <ChatMessage
@@ -178,44 +197,24 @@
                 />
               );
             })}
-          </>
+          </div>
         );
       };
 
       function App() {
-        const [ chatMessages, setChatMessages ] = React.useState([
-        {
-          message: "hello chatbot",
-          sender: "user",
-          id: "id1"
-        },
-        {
-          message: "Hello! How can I help you?",
-          sender: "robot",
-          id: "id2"
-        },
-        {
-          message: "Can you get me todays date?",
-          sender: "user",
-          id: "id3"
-        },
-        {
-          message: "Today is February 17",
-          sender: "robot",
-          id: "id4"
-        }]);
+        const [ chatMessages, setChatMessages ] = React.useState([]);
         // const [ chatMessages, setChatMessages ] = array; // Array Destructuring
         // const chatMessages = array[0]; // current data
         // const setChatMessages = array[1]; // function that updates the data
 
         return (
           <div className="app-container">
+            <ChatMessages
+            chatMessages={chatMessages}
+            />
             <ChatInput
               chatMessages={chatMessages}
               setChatMessages={setChatMessages}
-            />
-            <ChatMessages
-              chatMessages={chatMessages}
             />
           </div>
         );
