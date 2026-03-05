@@ -71,6 +71,16 @@
         overflow: scroll;
         scrollbar-width: none;
       }
+
+      .welcome-message {
+        color: rgb(120, 120, 120);
+        text-align: center;
+      }
+
+      .spinner {
+        height: 40px;
+        margin: -15px;
+      }
     </style>
   </head>
   <body>
@@ -85,18 +95,33 @@
     <script type="text/babel">
       function ChatInput ({ chatMessages, setChatMessages }) {
         const [ inputText, setInputText ] = React.useState("");
+        const [ isLoading, setIsLoading ] = React.useState(false);
+        const inputRef = React.useRef(null);
 
         function saveInputText(event) {
           setInputText(event.target.value);
         };
 
         async function sendMessage() {
+          if (!inputText || isLoading) return;
+
+          setIsLoading(true);
+
+          const loadingMessageId = crypto.randomUUID()
+
           const newChatMessages = [
             ...chatMessages,
             {
               message: inputText,
               sender: "user",
               id: crypto.randomUUID() // create a unique id
+            },
+            {
+              message: <img 
+                className="spinner" 
+                src="https://supersimple.dev/images/loading-spinner.gif"/>,
+              sender: "robot",
+              id: loadingMessageId
             }
           ];
 
@@ -104,14 +129,14 @@
           setInputText("");
 
           const response = await Chatbot.getResponseAsync(inputText);
-          setChatMessages([
-            ...newChatMessages,
-            {
-              message: response,
-              sender: "robot",
-              id: crypto.randomUUID()
-            }
-          ]);
+          setChatMessages(prev => 
+            prev.map(msg =>
+              msg.id === loadingMessageId
+                ? { ...msg, message: response }
+                : msg
+            )
+          );
+          setIsLoading(false);
         };
 
         function handleKeyDown(event) {
@@ -124,17 +149,31 @@
           };
         };
 
+        React.useEffect(() => {
+          if(!isLoading) {
+            inputRef.current?.focus();
+          }
+        }, [isLoading]);
+
         return (
           <div className="chat-input-container">            
-            <input 
+            <input
+              ref={inputRef}
               placeholder="Send a message to Chatbot"
               size="30"
               onKeyDown={handleKeyDown}
               onChange={saveInputText}
               value={inputText}
               className="chat-input"
+              disabled={isLoading}
             />
-            <button className="send-button" onClick={sendMessage}>Send</button>
+            <button
+              className="send-button"
+              onClick={sendMessage}
+              disabled={isLoading || !inputText}
+            >
+              {isLoading ? "Thinking..." : "Send"}
+            </button>
           </div>
         );
       };
@@ -188,6 +227,9 @@
 
         return (
           <div className="chat-messages-container" ref={chatMessagesRef}>
+            {chatMessages.length === 0 && (
+              <p className="welcome-message">Welcome to the chatbot project! Send a message using the textbox below.</p>
+            )}
             {chatMessages.map((chatMessage) => {
               return (
                 <ChatMessage

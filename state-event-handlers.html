@@ -44,20 +44,50 @@
       };
 
       function Counter({ countNumber, setCountNumber }) {
+        const intervalRef = React.useRef(null);
+
         function count() {
-          setCountNumber(
-            countNumber + 1
-          );
-        };
+          setCountNumber(prev => prev + 1);
+        }
+
+        function autoClick() {
+          if (intervalRef.current) return; // elak duplicate
+
+          intervalRef.current = setInterval(() => {
+            setCountNumber(prev => prev + 1);
+          }, 1000);
+        }
+
+        function reset() {
+          setCountNumber(0);
+
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+        }
 
         return (
           <>
+          {/*
             {countNumber === 1 && (
-              <button onClick={count}>Clicked {countNumber} time</button>
+              <button onClick={count}>
+                Clicked {countNumber} time
+              </button>
             )}
             {countNumber !== 1 && (
-              <button onClick={count}>Clicked {countNumber} times</button>
+              <button onClick={count}>
+                Clicked {countNumber} times
+              </button>
             )}
+          */}
+          
+            <button onClick={count}>
+              Clicked {countNumber} {countNumber === 1 ? "time" : "times"}
+            </button>
+
+            <button onClick={reset}>Reset</button>
+            <button onClick={autoClick}>Auto Click</button>
           </>
         );
       };
@@ -65,9 +95,7 @@
       function App() {
         const [ countNumber, setCountNumber ] = React.useState(0);
 
-        function reset() {
-          setCountNumber(0);
-        };
+        
 
         return (
           <>
@@ -75,11 +103,6 @@
               countNumber={countNumber}
               setCountNumber={setCountNumber}
             />
-            <Counter
-              countNumber={countNumber}
-              setCountNumber={setCountNumber}
-            />
-            <button onClick={reset}>Reset</button>
             <InputDisplay />
           </>
         );
