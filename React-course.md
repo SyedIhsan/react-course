@@ -127,3 +127,42 @@ Best Practice = Give useEffect a dependency array to avoid running too often
 
 ref = container with special React features
 
+
+
+#### React Vite
+
+
+
+node\_modules = packages
+
+public = images that can be access on public/with url
+
+
+
+eslint = highlights problems in JavaScript code
+
+install eslint on extension
+
+package.json = has a lists of packages that need to install to run the projects
+
+package-lock.json = it saves the version numbers of all the packages that we install
+
+npm automatically updates package-lock.json
+
+
+
+vite.config.js configures Vite
+
+Vite = tool that we used to set up this project
+
+* Vite also helps us "build" the website
+* Vite also creates a server (A server puts our website at a URL)
+
+
+
+main.jsx = sets up React
+
+
+
+<StrictMode> = gives us some additional checks and warnings when developing our app
+
