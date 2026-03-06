@@ -5,6 +5,7 @@ import './TrackingPage.css'
 function TrackingPage() {
   return (
     <>
+      <link rel="icon" type="image/svg+xml" href="https://supersimple.dev/images/tracking-favicon.png" />
       <title>Tracking</title>
 
       <Header />

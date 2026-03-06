@@ -1,10 +1,12 @@
 import { Link } from 'react-router'
 import Header from '../components/Header';
+import BuyAgain from '../assets/images/icons/buy-again.png'
 import './OrdersPage.css'
 
 function OrdersPage() {
   return (
     <>
+      <link rel="icon" type="image/svg+xml" href="https://supersimple.dev/images/orders-favicon.png" />
       <title>Orders</title>
 
       <Header />
@@ -49,7 +51,7 @@ function OrdersPage() {
                   Quantity: 1
                 </div>
                 <button className="buy-again-button button-primary">
-                  <img className="buy-again-icon" src="images/icons/buy-again.png" />
+                  <img className="buy-again-icon" src={BuyAgain} />
                   <span className="buy-again-message">Add to Cart</span>
                 </button>
               </div>
@@ -77,7 +79,7 @@ function OrdersPage() {
                   Quantity: 2
                 </div>
                 <button className="buy-again-button button-primary">
-                  <img className="buy-again-icon" src="images/icons/buy-again.png" />
+                  <img className="buy-again-icon" src={BuyAgain} />
                   <span className="buy-again-message">Add to Cart</span>
                 </button>
               </div>
@@ -128,7 +130,7 @@ function OrdersPage() {
                   Quantity: 2
                 </div>
                 <button className="buy-again-button button-primary">
-                  <img className="buy-again-icon" src="images/icons/buy-again.png" />
+                  <img className="buy-again-icon" src={BuyAgain} />
                   <span className="buy-again-message">Add to Cart</span>
                 </button>
               </div>
