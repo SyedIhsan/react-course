@@ -166,3 +166,18 @@ main.jsx = sets up React
 
 <StrictMode> = gives us some additional checks and warnings when developing our app
 
+<Route> = adds a page to the website
+
+
+
+###### Single Page Application (SPA)
+
+
+
+* Only have 1 HTML file
+* use React to create multiple pages
+
+
+
+<Link> = go to another page without reloading
+
