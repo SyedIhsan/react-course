@@ -12,7 +12,7 @@ function NotFoundPage({ cart }) {
         <h5>Please try again later.</h5>
       </div>
     </>
-  )
+  );
 }
 
 export default NotFoundPage

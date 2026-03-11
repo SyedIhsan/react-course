@@ -6,7 +6,7 @@ import formatMoney from '../../utils/money'
 import OrderDetailsGrid from './OrderDetailsGrid'
 import './OrdersPage.css'
 
-function OrdersPage({ cart }) {
+function OrdersPage({ cart, loadCart }) {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -51,10 +51,10 @@ function OrdersPage({ cart }) {
                   </div>
                 </div>
 
-                <OrderDetailsGrid order={order} />
+                <OrderDetailsGrid order={order} loadCart={loadCart} />
               </div>
             );
-          })};
+          })}
         </div>
       </div>
     </>
