@@ -16,6 +16,13 @@ function OrderSummary({ deliveryOptions, cart, loadCart }) {
           await loadCart();
         };
 
+        const updateQuantity = async () => {
+          await axios.put(`/api/cart-items/${cartItem.productId}`, {
+            quantity: cartItem.quantity + 1
+          });
+          await loadCart();
+        };
+
         return (
           <div key={cartItem.productId} className="cart-item-container">
             <div className="delivery-date">
@@ -37,7 +44,7 @@ function OrderSummary({ deliveryOptions, cart, loadCart }) {
                   <span>
                     Quantity: <span className="quantity-label">{cartItem.quantity}</span>
                   </span>
-                  <span className="update-quantity-link link-primary">
+                  <span className="update-quantity-link link-primary" onClick={updateQuantity}>
                     Update
                   </span>
                   <span className="delete-quantity-link link-primary" onClick={deleteCart}>
