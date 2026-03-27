@@ -27,6 +27,8 @@ function CheckoutPage({ cart, loadCart }) {
 		getPaymentData();
 	}, [cart]);
 
+	window.axios = axios;
+	
 	return (
 		<>
 			<link rel="icon" type="image/svg+xml" href="https://supersimple.dev/images/cart-favicon.png" />
