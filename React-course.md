@@ -416,3 +416,38 @@ Load Balancer = distribute the request across multiple computer (Busy Website/Tr
 
 Route 53 = manage domain names in AWS
 
+
+
+Hosted Zone = lets us connect a domain name to our app
+
+
+
+React Compiler = optimizes our React code
+
+
+
+
+
+##### TypeScript
+
+
+
+TypeScript = is just JavaScript with extra features
+
+
+
+Features:
+
+
+
+* Type Checking = Add types to a variables (string, number, object, etc)
+* Type Inference = TypeScript can figure out the type automatically
+
+
+
+! = this value definitely exists (it will not be null)
+
+
+
+allowJs = lets us mix TypeScript and JavaScript files
+
