@@ -1,4 +1,4 @@
-function formatMoney(amountCents) {
+function formatMoney(amountCents: number) {
   return `$${(amountCents / 100).toFixed(2)}`
 }
 

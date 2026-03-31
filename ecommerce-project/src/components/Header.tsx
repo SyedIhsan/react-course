@@ -6,7 +6,15 @@ import CartIcon from '../assets/images/icons/cart-icon.png'
 import SearchIcon from '../assets/images/icons/search-icon.png'
 import './Header.css'
 
-function Header({ cart }) {
+type Cart = {
+  cart: {
+    productId: string;
+    quantity: number;
+    deliveryOptionId: string;
+  }[];
+};
+
+function Header({ cart }: Cart) {
   const [ searchParams ] = useSearchParams();
   const urlSearch = searchParams.get('search') || '';
   const [ search, setSearch ] = useState(urlSearch);
