@@ -26,7 +26,7 @@ function Header({ cart }: Cart) {
     totalQuantity += cartItem.quantity;
   });
 
-  const getSearch = (event) => {
+  const getSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
 
@@ -34,7 +34,7 @@ function Header({ cart }: Cart) {
     navigate(`/?search=${search}`);
   };
 
-  const onKeyDown = (event) => {
+  const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       searchButton();
     };
