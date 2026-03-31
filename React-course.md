@@ -181,3 +181,238 @@ main.jsx = sets up React
 
 <Link> = go to another page without reloading
 
+
+
+
+
+##### Backend
+
+
+
+Backend = manages the data
+
+
+
+axios = cleaner way to make requests to the backend
+
+
+
+API = Application Programming Interface
+
+
+
+/api = these URL Paths are for interacting with the backend
+
+
+
+<base href="/" /> (Adds / in front of any relative URLs)
+
+e.g. /images/products/shirt.png
+
+
+
+###### Add Server Proxy
+
+
+
+server: {
+
+  proxy: {
+
+    '/api': {
+
+      target: 'http://localhost:3000'
+
+    },
+
+    '/images': {
+
+      target: 'http://localhost:3000'
+
+    }
+
+  }
+
+}
+
+
+
+
+
+Query Parameter = lets us add additional info to our request
+
+
+
+'/api/cart-items?expand=product'
+
+
+
+
+
+##### Data Mutation
+
+
+
+Data Mutation = update data in the backend
+
+
+
+###### HTTP Method
+
+
+
+Backend will look into this: Type \& URL Path (e.g. GET /api/products)
+
+Type: GET/POST/PUT/DELETE
+
+URL Path: /api/products
+
+4 common types of requests:
+
+
+
+GET = get some data
+
+POST = create some data
+
+PUT = update some data
+
+DELETE = delete some data
+
+
+
+
+
+useNavigate() = lets us navigate to (go to) another page in our app
+
+
+
+
+
+##### Automated Tests
+
+
+
+npm install --save-dev vitest@3.1.2
+
+
+
+\--save-dev = only for development
+
+
+
+###### Unit Test = test 1 unit (or 1 piece) of code
+
+
+
+it = create a test
+
+expect = check if the result is correct
+
+describe = groups tests together (group of tests = test suite)
+
+
+
+To test, run:
+
+npx vitest
+
+
+
+
+
+###### Integration Test = test multiple units of code working together
+
+
+
+render = display the component on the page
+
+
+
+npm install --save-dev @testing-library/react@16.3.0 @testing-library/jest-dom@6.6.3 @testing-library/user-event@14.6.1 jsdom@26.1.0
+
+
+
+import { render } from '@testing-library/react'; = renders a component in a fake web page
+
+
+
+In our tests, we should not contact a real backend
+
+
+
+vi.fn() = creates a fake function that doesn't do anything (mock)
+
+screen = check the fake web page
+
+
+
+
+
+###### Test User Interactions
+
+
+
+vi.mock() = create a fake packages
+
+
+
+Test Hook:
+
+* beforeEach()
+* afterEach()
+* beforeAll()
+* afterAll()
+
+
+
+Mock the Implementation = make the mock do whatever we want
+
+
+
+MemoryRouter = specifically for testing
+
+
+
+within() = lets us find things within a specific element
+
+
+
+
+
+##### Deployment (AWS)
+
+
+
+EC2 (Elastic Compute Cloud) = rent a computer from AWS
+
+
+
+Infrastructure as a Service (IaaS)
+
+
+
+Elastic Beanstalk = End-to-end web application management
+
+
+
+Platform as a Service (PaaS)
+
+
+
+1. Uses EC2 to rent a computer
+2. Installs all the software we need
+3. Does all the software setup for us
+
+
+
+Role = gives Elastic Beanstalk permission to use other services in AWS
+
+
+
+Load Balancer = distribute the request across multiple computer (Busy Website/Traffic)
+
+
+
+Route 53 = manage domain names in AWS
+
